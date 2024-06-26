@@ -1,6 +1,7 @@
 import React from "react";
 import GlobalAvtion from "../../../ui/glabal-action";
 import GlobalIcons from "../../../ui/global-input";
+import FileUpload from "../../../ui/file-upload";
 
 const Actions = () => {
   return (
@@ -9,6 +10,7 @@ const Actions = () => {
       <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
         <GlobalIcons placeholder={"link"} />
         <GlobalIcons placeholder={"name"} />
+        <FileUpload title={"sreenshot"}/>
       </div>
     </div>
   );
