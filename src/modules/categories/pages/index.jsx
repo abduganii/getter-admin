@@ -17,11 +17,11 @@ const SitesPage = () => {
     }
     ) || {},
 
-    // {
-    //   getNextPageParam: (lastPage) => {
-    //     return lastPage?.meta?.currentPage +1
-    //   }
-    // }
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage?.meta?.currentPage +1
+      }
+    }
   )
   useEffect(() => {
     if (inView && hasNextPage) {

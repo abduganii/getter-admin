@@ -3,7 +3,7 @@ import { DashboardRoute } from "./dashboard/route";
 import { DeveloperRoute } from "./developer/route";
 import { OrderRoute } from "./order/route";
 import { OurserviceRoute } from "./our-service/route";
-import { SaleProductRoute } from "./sale-product/route";
+// import { SaleProductRoute } from "./sale-product/route";
 import { SitesRoute } from "./site/route";
 
 const routes = [
@@ -11,7 +11,7 @@ const routes = [
   ...DashboardRoute,
   ...SitesRoute,
   ...DeveloperRoute,
-  ...SaleProductRoute,
+  // ...SaleProductRoute,
   ...CategoriesRoute,
   ...OurserviceRoute,
   ...OrderRoute

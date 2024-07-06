@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const SitesPage = () => {
   const navigate = useNavigate()
   const { ref, inView } = useInView()
-  const pageSize = 20;
+  const pageSize = 25;
 
   const { data, isLoading: isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
     ['website'],
