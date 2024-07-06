@@ -10,18 +10,18 @@ const SitesPage = () => {
   const pageSize = 20;
 
   const { data, isLoading: isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['website'],
-    async ({ pageParam = 1 }) => await GetAllData("website", {
+    ['categories'],
+    async ({ pageParam = 1 }) => await GetAllData("categories", {
       limit: pageSize,
       page: pageParam
     }
     ) || {},
 
-    {
-      getNextPageParam: (lastPage) => {
-        return lastPage?.meta?.currentPage +1
-      }
-    }
+    // {
+    //   getNextPageParam: (lastPage) => {
+    //     return lastPage?.meta?.currentPage +1
+    //   }
+    // }
   )
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -29,7 +29,7 @@ const SitesPage = () => {
     }
   }, [inView])
 
-  const DataArr =  data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page?.items], []) : []
+  const DataArr =  data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page], []) : []
  
   return (
     <>
@@ -40,12 +40,11 @@ const SitesPage = () => {
           <GlobalTable
             key={e?.id}
             id={e?.id}
-            fields={[e?.link,e?.title, e?.likesCount]}
+            fields={[,e?.title, e?.type]}
             confirm={false}
-            OnConfirm={e?.isActive ? null : () => console.log("ok")}
             show={true}
-            update={()=>navigate(`/sites/${e?.id}`)}
-            ondelete={'website'}
+            update={()=>navigate(`/categories/${e?.id}`)}
+            ondelete={'categories'}
             />
           ))}
         <div ref={ref} style={{ padding: "10px" }}></div>

@@ -1,12 +1,20 @@
+import { CategoriesRoute } from "./categories/route";
 import { DashboardRoute } from "./dashboard/route";
-import { ServiceRoute } from "./service/route";
+import { DeveloperRoute } from "./developer/route";
+import { OrderRoute } from "./order/route";
+import { OurserviceRoute } from "./our-service/route";
+import { SaleProductRoute } from "./sale-product/route";
 import { SitesRoute } from "./site/route";
 
 const routes = [
   //   ...notFound,
   ...DashboardRoute,
   ...SitesRoute,
-  ...ServiceRoute
+  ...DeveloperRoute,
+  ...SaleProductRoute,
+  ...CategoriesRoute,
+  ...OurserviceRoute,
+  ...OrderRoute
 ];
 const rolename = "admin";
 

@@ -1,4 +1,6 @@
 import React from "react";
+import { useQueryClient } from "react-query";
+import { DeleteDataId } from "../../service/global";
 import { CkeckIcons, DeleteIcons, EtidIcons, EyeIcons } from "../icons";
 
 const GlobalTable = ({
@@ -8,16 +10,18 @@ const GlobalTable = ({
   OnConfirm,
   update,
   ondelete,
-  show
+  show,
+  id
 }) => {
+  const queryClient = useQueryClient()
   return (
-    <div className="group hover:bg-purple-50 w-full flex items-start gap-[5px] p-[6px]">
+    <li className="group hover:bg-purple-50  flex justify-between items-start gap-4 p-[6px]">
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
-        fields?.map((e) => (
+        fields?.map((e,i) => (
           <p
-            key={e?.key}
-            className="w-full text-neutral-900 text-[22px] font-normal"
+            key={i}
+            className="w-full max-w-[220px] text-neutral-900 text-[22px] font-normal truncate"
           >
             {e}
           </p>
@@ -35,17 +39,22 @@ const GlobalTable = ({
           </div>
         )}
         {update && (
-          <div className="w-[24px] hidden group-hover:block">
+          <div className="w-[24px] hidden group-hover:block" onClick={update}>
             <EtidIcons />
           </div>
         )}
         {ondelete && (
-          <div className="w-[24px] hidden group-hover:block">
+          <div className="w-[24px] hidden group-hover:block" onClick={async() => {
+            await DeleteDataId(ondelete, id)
+              .then(e => {
+                queryClient.invalidateQueries([ondelete]);
+              })
+          }}>
             <DeleteIcons />
           </div>
         )}
       </div>
-    </div>
+    </li>
   );
 };
 

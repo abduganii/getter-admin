@@ -12,18 +12,18 @@ const Actions = () => {
   const navigate = useNavigate()
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
-    ["websiteId", id],
+    ["our-serviceId", id],
     () =>
-      GetByIdData("website", id),
+      GetByIdData("our-service", id),
     {
       enabled: id !== "new"
     }
   );
-  console.log(DataOne?.data)
+
   return (
     <div className={"ml-[260px] w-full"}>
     <FormContainer
-      url={"website"}
+      url={"our-service"}
       isFormData={false}
       setLoader={setLoader}
       loaderGlob={loader}
@@ -32,18 +32,18 @@ const Actions = () => {
       {
         name: "title",
         validations: [{ type: "required" }],
-        value:  DataOne?.data?.title || ""
+        value:  DataOne?.title || ""
       },
    
       {
-        name: "link",
+        name: "description",
         validations: [{ type: "required" }],
-        value:  DataOne?.data?.link || ""
+        value:  DataOne?.description || ""
       },
     
     ]}
     onSuccess={() => {
-      navigate("/sites");
+      navigate("/our-service");
     }}
     onError={(e) => {
       console.log(e, "onError");
@@ -55,33 +55,32 @@ const Actions = () => {
     // }}
     validateOnMount={false}
   >
-      {(formik) => {
+        {(formik) => {
+          console.log(formik)
         return (
           <>
-            <GlobalAvtion title={"Site"} />
+            <GlobalAvtion title={"Категории"} />
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
               <GlobalIcons
-                placeholder={"link"}
+                placeholder={"title"}
                  type="text"
-                  formik={formik}
-                  value={formik.values.link}
-                  name={"link"}
-                  id={"link"}
-                  errors={formik.errors.link} 
-                  required={true}
-                />
-              <GlobalIcons placeholder={"name"}
-                  type="text"
                   formik={formik}
                   value={formik.values.title}
                   name={"title"}
                   id={"title"}
-                errors={formik.errors.title} 
+                  errors={formik.errors.title} 
+                  required={true}
+                />
+              <GlobalIcons placeholder={"description"}
+                  type="text"
+                  formik={formik}
+                  value={formik.values.description}
+                  name={"description"}
+                  id={"description"}
+                errors={formik.errors.description} 
                 required={true}
                   />
-              <FileUpload value={DataOne?.data} title={"sreenshot"}
-                
-              />
+           
             </div>
           </>)
       }}

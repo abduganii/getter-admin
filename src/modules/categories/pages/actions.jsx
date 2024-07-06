@@ -12,9 +12,9 @@ const Actions = () => {
   const navigate = useNavigate()
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
-    ["websiteId", id],
+    ["categoriesId", id],
     () =>
-      GetByIdData("website", id),
+      GetByIdData("categories", id),
     {
       enabled: id !== "new"
     }
@@ -23,7 +23,7 @@ const Actions = () => {
   return (
     <div className={"ml-[260px] w-full"}>
     <FormContainer
-      url={"website"}
+      url={"categories"}
       isFormData={false}
       setLoader={setLoader}
       loaderGlob={loader}
@@ -36,14 +36,14 @@ const Actions = () => {
       },
    
       {
-        name: "link",
+        name: "type",
         validations: [{ type: "required" }],
-        value:  DataOne?.data?.link || ""
+        value:  DataOne?.data?.type || ""
       },
     
     ]}
     onSuccess={() => {
-      navigate("/sites");
+      navigate("/categories");
     }}
     onError={(e) => {
       console.log(e, "onError");
@@ -58,16 +58,16 @@ const Actions = () => {
       {(formik) => {
         return (
           <>
-            <GlobalAvtion title={"Site"} />
+            <GlobalAvtion title={"Категории"} />
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
               <GlobalIcons
-                placeholder={"link"}
+                placeholder={"type"}
                  type="text"
                   formik={formik}
-                  value={formik.values.link}
-                  name={"link"}
-                  id={"link"}
-                  errors={formik.errors.link} 
+                  value={formik.values.type}
+                  name={"type"}
+                  id={"type"}
+                  errors={formik.errors.type} 
                   required={true}
                 />
               <GlobalIcons placeholder={"name"}
@@ -79,9 +79,7 @@ const Actions = () => {
                 errors={formik.errors.title} 
                 required={true}
                   />
-              <FileUpload value={DataOne?.data} title={"sreenshot"}
-                
-              />
+           
             </div>
           </>)
       }}

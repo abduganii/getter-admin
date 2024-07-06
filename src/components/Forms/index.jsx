@@ -1,5 +1,4 @@
-import { FC, ReactNode } from "react";
-import { Form, Formik, FormikProps } from "formik";
+import { Form, Formik } from "formik";
 import { isFunction } from "lodash";
 import { formHelpers } from "../formHelpers.js";
 import { useParams } from "react-router-dom";
@@ -27,13 +26,14 @@ export const FormContainer = ({
   const { initialValues, validationSchema } =
     formHelpers.createFormSchema(fields);
   const handleSubmit = async (values) => {
+
     const formValues = formHelpers.getFormValues(values, fields, isFormData);
     setLoader(true);
     if (id == "new" || !id) {
       await AddData(url, formValues)
         .then((res) => {
           if (res?.status == "200" || res?.status == "201") {
-            // formHelpers.resetForm();
+           
             onSuccess(res);
           }
         })

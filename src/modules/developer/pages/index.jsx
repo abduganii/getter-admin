@@ -4,19 +4,18 @@ import { GetAllData } from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from 'react-intersection-observer'
 import { useNavigate } from "react-router-dom";
-const SitesPage = () => {
+const IndexPage = () => {
   const navigate = useNavigate()
   const { ref, inView } = useInView()
   const pageSize = 20;
 
   const { data, isLoading: isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ['website'],
-    async ({ pageParam = 1 }) => await GetAllData("website", {
+    ['developer'],
+    async ({ pageParam = 1 }) => await GetAllData("developer", {
       limit: pageSize,
       page: pageParam
     }
     ) || {},
-
     {
       getNextPageParam: (lastPage) => {
         return lastPage?.meta?.currentPage +1
@@ -29,23 +28,22 @@ const SitesPage = () => {
     }
   }, [inView])
 
-  const DataArr =  data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page?.items], []) : []
- 
+  
+
+  const DataArr = data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page?.items], []) : []
   return (
     <>
 
-    <div className="mx-auto w-full max-w-[792px] mt-[30px] items-center">
-
+    <div className="mx-auto w-full h-full  max-w-[792px] mt-[30px] items-center">
         {DataArr && DataArr?.map(e => (
           <GlobalTable
             key={e?.id}
             id={e?.id}
-            fields={[e?.link,e?.title, e?.likesCount]}
+            fields={[e?.firstName,e?.lastName, e?.position?.title]}
             confirm={false}
-            OnConfirm={e?.isActive ? null : () => console.log("ok")}
             show={true}
-            update={()=>navigate(`/sites/${e?.id}`)}
-            ondelete={'website'}
+            update={()=>navigate(`/developer/${e?.id}`)}
+            ondelete={'developer'}
             />
           ))}
         <div ref={ref} style={{ padding: "10px" }}></div>
@@ -54,4 +52,4 @@ const SitesPage = () => {
   );
 };
 
-export default SitesPage;
+export default IndexPage;

@@ -71,13 +71,12 @@ export const GetMe = async () => {
 };
 
 const handleError = (error) => {
-  if (error?.response?.status === 401) {
-    window.location.replace("/auth/login");
-    window.localStorage.removeItem("authToken");
-  }
+  // if (error?.response?.status === 401) {
+  //   window.location.replace("/auth/login");
+  //   window.localStorage.removeItem("getterToken");
+  // }
   toast.error(
-    error?.response?.data?.error?.message ||
-      error?.response?.data ||
+      error?.response?.data?.message ||
       "error not given"
   );
 };

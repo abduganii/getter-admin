@@ -2,7 +2,7 @@ import axios from "axios";
 import { QueryClient } from "react-query";
 
 const api = axios.create({
-  baseURL: "/",
+  baseURL: "https://api.getter.uz",
   withCredentials: true,
   headers: {
     "Access-Control-Allow-Origin": "*",

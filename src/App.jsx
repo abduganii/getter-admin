@@ -3,24 +3,24 @@ import { AuthorizedRoutes, UnAuthorizedRoutes } from "./router/index";
 // import { GetMe } from "./service/global";
 import { useLocation, useNavigate } from "react-router-dom";
 import GlobalLoader from "./ui/global-loader";
+import { GetMe } from "./service/global";
 function App() {
-  const isAuth = window.localStorage.getItem("authToken") || true;
+  const isAuth = window.localStorage.getItem("getterToken") ;
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setLoading(true);
-  //     await GetMe()
-  //       .then((res) => {
-
-  //         if (res.status == "200" && location.pathname == "/")
-  //           navigate("/dashboard");
-  //       })
-  //       .finally(() => setLoading(false));
-  //   };
-  //   if (location.pathname != "/auth/login" && isAuth) fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      await GetMe()
+        .then((res) => {
+          if (res.status == "200" && location.pathname == "/")
+            navigate("/dashboard");
+        })
+        .finally(() => setLoading(false));
+    };
+    if (location.pathname != "/auth/login" && isAuth) fetchData();
+  }, []);
 
   useEffect(() => {
     if (!isAuth) {
@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-      {true ? <AuthorizedRoutes /> : <UnAuthorizedRoutes />}
+      {isAuth ? <AuthorizedRoutes /> : <UnAuthorizedRoutes />}
       {loading ? <GlobalLoader /> : ""}
     </>
   );
