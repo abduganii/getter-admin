@@ -3,7 +3,8 @@ import { AuthorizedRoutes, UnAuthorizedRoutes } from "./router/index";
 // import { GetMe } from "./service/global";
 import { useLocation, useNavigate } from "react-router-dom";
 import GlobalLoader from "./ui/global-loader";
-import { GetMe } from "./service/global";
+import {  GetMe } from "./service/global";
+import { AuthStore } from "./service/upload";
 function App() {
   const isAuth = window.localStorage.getItem("getterToken") ;
   const [loading, setLoading] = useState(false);
@@ -13,9 +14,15 @@ function App() {
     const fetchData = async () => {
       setLoading(true);
       await GetMe()
-        .then((res) => {
-          if (res.status == "200" && location.pathname == "/")
+        .then(async (res) => {
+          await AuthStore( { username: "khayrulloev.abdulloh@gmail.com", password: "password" })
+            .then((data) =>   localStorage.setItem("storeToken", data?.data?.accessToken))
+            .catch(()=>console.log("err"))
+          if (res.status == "200" && location.pathname == "/") {
             navigate("/dashboard");
+          }
+          
+          
         })
         .finally(() => setLoading(false));
     };

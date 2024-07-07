@@ -1,31 +1,36 @@
 import axios from "axios";
 
-export const UploadFile = async (data, query, onProgress) => {
-  const params = new URLSearchParams(query);
+export const AuthStore = async ( data) => {
+  try {
+    const response =  await axios.post( `${import.meta.env.VITE_API_STORE_URL}/api/v1/auth/access/token`, data);
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const UploadFile = async (data) => {
   const response = await axios.post(
-    `${import.meta.env.VITE_API_BACKEND_URL}/upload/custom_upload${
-      query ? "?" + params.toString() : ""
-    }`,
+    `${import.meta.env.VITE_API_STORE_URL}/api/v1/media/1/upload`,
     data,
     {
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        "Authorization":`Bearer ${window.localStorage.getItem("storeToken")}`
       },
-      onUploadProgress: (progressEvent) => {
-        if (onProgress && progressEvent.total) {
-          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          onProgress(percentCompleted);
-        }
-      },
-    },
-    
+    }
   );
   return response;
 };
-export const FileRemove = async (body) => {
+export const FileRemove = async (removeImageId) => {
   const response = await axios.delete(
-    `${import.meta.env.VITE_API_STORE_URL}/remove`,
-    { data: body }
+    `${import.meta.env.VITE_API_STORE_URL}/api/v1/media/${removeImageId}/hard-delete`,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization":`Bearer ${window.localStorage.getItem("storeToken")}`
+      },
+    }
   );
   return response;
 };

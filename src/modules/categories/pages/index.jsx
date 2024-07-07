@@ -29,7 +29,7 @@ const SitesPage = () => {
     }
   }, [inView])
 
-  const DataArr =  data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page], []) : []
+  const DataArr =  data?.pages?.length ?data?.pages?.reduce((acc, page) => [...acc, ...page?.items], []) : []
  
   return (
     <>

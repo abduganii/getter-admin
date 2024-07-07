@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { filteredRoutes } from "../modules/index";
 import { Fragment } from "react";
 import MainLayout from "../layout";
-import { AuthRoute } from "../modules/auth/route";
 import AuthPage from "../modules/auth/pages";
 
 const nestedRoutes = (routes) =>
@@ -24,18 +23,12 @@ export const AuthorizedRoutes = () => {
       <Route path="/" element={<MainLayout />}>
         {nestedRoutes(filteredRoutes)}
       </Route>
-      {/* <Route path="*" element={<Loading />} /> */}
     </Routes>
   );
 };
 
 export const UnAuthorizedRoutes = () => (
   <Routes>
-    {/* <Route path="*" element={<Loading />} /> */}
-    {/* {AuthRoute.map(({ Element, url }) => (
-      <Route key={url} path={url} element={<Element />} />
-    ))} */}
     <Route path="/auth/login" element={<AuthPage />}/>
-    UnAuthorizedRoutes/auth/login
   </Routes>
 );

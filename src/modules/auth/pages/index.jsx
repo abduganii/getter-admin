@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormContainer } from "../../../components/Forms";
+import { AuthStore } from "../../../service/upload";
 import GlobalIcons from "../../../ui/global-input";
 
 const AuthPage = () => {
@@ -28,10 +29,11 @@ const AuthPage = () => {
       },
     
     ]}
-      onSuccess={(data) => {
-        console.log(data?.data?.accessToken)
+      onSuccess={async(data) => {
+        await AuthStore( { username: "khayrulloev.abdulloh@gmail.com", password: "password" })
+            .then((data) =>   localStorage.setItem("storeToken", data?.data?.accessToken))
+            .catch(()=>console.log("err"))
         localStorage.setItem("getterToken", data?.data?.accessToken);
-      // window.location.reload();
         navigate("/dashboard");
     }}
     onError={(e) => {

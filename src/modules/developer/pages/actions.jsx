@@ -6,9 +6,11 @@ import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
 import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import { FileRemove } from "../../../service/upload";
 
 const Actions = () => {
   const [loader, setLoader] = useState()
+  const [removeImageId,setRemoveImageId] = useState(null)
   const navigate = useNavigate()
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
@@ -25,7 +27,7 @@ const Actions = () => {
       GetAllData("position"),
    
   );
-  console.log(position)
+  
   return (
     <div className={"ml-[260px] w-full"}>
     <FormContainer
@@ -50,9 +52,17 @@ const Actions = () => {
         name: "position",
         validations: [{ type: "required" }],
         value:  DataOne?.position?.id || ""
+      },
+      {
+        
+        name: "avatar",
+        value:  DataOne?.avatar || ""
       }
     ]}
-    onSuccess={() => {
+      onSuccess={async () => {
+          if (removeImageId) {
+            await FileRemove(removeImageId)
+      }
       navigate("/developer");
     }}
     onError={(e) => {
@@ -71,7 +81,7 @@ const Actions = () => {
           <>
             <GlobalAvtion title={"Site"} />
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden flex ">
-              <FileUpload type="avatar" value={DataOne} title={""} />
+              <FileUpload name={'avatar'} type="avatar" formik={formik} setRemoveImageId={setRemoveImageId} value={formik.values.avatar} title={""} />
               <div className="flex flex-wrap">
                 <GlobalIcons
                   placeholder={"firstName"}

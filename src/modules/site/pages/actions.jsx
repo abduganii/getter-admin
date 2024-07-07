@@ -5,12 +5,14 @@ import FileUpload from "../../../ui/file-upload";
 import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
 import { GetByIdData } from "../../../service/global";
+import {FileRemove} from '../../../service/upload'
 import { useQuery } from "react-query";
 
 const Actions = () => {
   const [loader, setLoader] = useState()
   const navigate = useNavigate()
   const { id } = useParams();
+  const [removeImageId,setRemoveImageId] = useState(null)
   const { data: DataOne, isLoading: productLoader } = useQuery(
     ["websiteId", id],
     () =>
@@ -19,7 +21,6 @@ const Actions = () => {
       enabled: id !== "new"
     }
   );
-  console.log(DataOne?.data)
   return (
     <div className={"ml-[260px] w-full"}>
     <FormContainer
@@ -40,14 +41,24 @@ const Actions = () => {
         validations: [{ type: "required" }],
         value:  DataOne?.data?.link || ""
       },
+      {
+        name: "media",
+        value:  DataOne?.data?.media || ""
+      },
+      
     
     ]}
-    onSuccess={() => {
+        onSuccess={async () => {
+          if (removeImageId) {
+            await FileRemove(removeImageId)
+      }
       navigate("/sites");
     }}
+      
     onError={(e) => {
       console.log(e, "onError");
-    }}
+        }}
+  
     onFinal={() => {
       setLoader(false);
     }}
@@ -79,7 +90,7 @@ const Actions = () => {
                 errors={formik.errors.title} 
                 required={true}
                   />
-              <FileUpload value={DataOne?.data} title={"sreenshot"}
+              <FileUpload name="media" value={formik?.values?.media} setRemoveImageId={setRemoveImageId}  formik={formik} title={"sreenshot"}
                 
               />
             </div>
