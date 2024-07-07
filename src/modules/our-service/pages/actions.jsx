@@ -67,12 +67,14 @@ const Actions = () => {
                   formik={formik}
                   value={formik.values.title}
                   name={"title"}
-                  id={"title"}
+                id={"title"}
+                className={'w-full'}
                   errors={formik.errors.title} 
                   required={true}
                 />
               <GlobalIcons placeholder={"description"}
-                  type="text"
+                type="text"
+                className={'w-full'}
                   formik={formik}
                   value={formik.values.description}
                   name={"description"}

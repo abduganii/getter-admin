@@ -11,7 +11,12 @@ const GlobalIcons = ({
   required,
   className,
   options,
-  value} ) => {
+  mode,
+  onDeselect,
+  onSelect,
+  value,
+  props
+}) => {
   return (
     <>
       {type == "select" ? (
@@ -20,14 +25,31 @@ const GlobalIcons = ({
           className={`w-full flex bg-white border border-zinc-200  text-neutral-900 text-[22px] font-normal ${className && className}`}
           placeholder={placeholder}
           value={value}
-      
+          mode={mode}
           onChange={(e) => {
-            formik.handleChange(e);
             if (localChange) localChange(e);
           }}
+          onSelect={onSelect}
+          onDeselect={onDeselect}
           // disabled={disabled}
-          options={options?.map((sp) => ({ value: sp.id, label: sp.title }))}
+          options={options?.map((sp) => ({ value: sp.id, label: props ? sp?.[`${props}`] : sp?.title }))}
         />
+      )  :type == "textarea" ? (
+          <textarea
+             id={id}
+              name={name}
+              type={type || "text"}
+              onChange={(e) => {
+                formik.handleChange(e);
+                if (localChange) localChange(e);
+              }}
+              className={`w-full  bg-white border border-zinc-200 px-[20px] py-[4px] text-neutral-900 text-[22px] font-normal ${className && className}`}
+              placeholder={placeholder}
+              value={value}
+            required={required}
+          >
+                {placeholder}
+          </textarea>
       ) : (
           
         <input
@@ -38,7 +60,7 @@ const GlobalIcons = ({
             formik.handleChange(e);
             if (localChange) localChange(e);
           }}
-          className={`w-full  bg-white border border-zinc-200 px-[20px] py-[4px] text-neutral-900 text-[22px] font-normal ${className && className}`}
+          className={`  bg-white border border-zinc-200 px-[20px] py-[4px] text-neutral-900 text-[22px] font-normal ${className && className}`}
           placeholder={placeholder}
           value={value}
           required={required}

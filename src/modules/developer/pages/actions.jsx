@@ -42,7 +42,6 @@ const Actions = () => {
         validations: [{ type: "required" }],
         value:  DataOne?.firstName || ""
       },
-   
       {
         name: "lastName",
         validations: [{ type: "required" }],
@@ -54,7 +53,6 @@ const Actions = () => {
         value:  DataOne?.position?.id || ""
       },
       {
-        
         name: "avatar",
         value:  DataOne?.avatar || ""
       }
@@ -113,10 +111,12 @@ const Actions = () => {
                     value={formik.values.position}
                     name={"position"}
                     id={"position"}
-                  errors={formik.errors.position} 
-                  localChange={(e) => {
+                    errors={formik.errors.position} 
+                    localChange={(e) => {
                      formik.setFieldValue(`position`, e);
-              }}
+                  }}
+                  
+                  
                     required={true}
                     options={position?.items || []}
                     />

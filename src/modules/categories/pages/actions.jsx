@@ -61,6 +61,7 @@ const Actions = () => {
             <GlobalAvtion title={"Категории"} />
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
               <GlobalIcons
+                   className={'w-full'}
                 placeholder={"type"}
                  type="text"
                   formik={formik}
@@ -71,7 +72,8 @@ const Actions = () => {
                   required={true}
                 />
               <GlobalIcons placeholder={"name"}
-                  type="text"
+                type="text"
+                className={'w-full'}
                   formik={formik}
                   value={formik.values.title}
                   name={"title"}

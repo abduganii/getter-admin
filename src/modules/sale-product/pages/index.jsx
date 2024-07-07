@@ -39,7 +39,7 @@ const IndexPage = () => {
           <GlobalTable
             key={e?.id}
             id={e?.id}
-            fields={[e?.firstName,e?.lastName, e?.position]}
+            fields={[e?.title,e?.link, e?.position]}
             confirm={false}
             show={true}
             update={()=>navigate(`/sale-product/${e?.id}`)}

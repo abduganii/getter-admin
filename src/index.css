@@ -58,6 +58,14 @@ input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
   color: #45110e1a
 }
+.ant-select{
+
+  min-height: 43px !important;
+}
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
   border: 1px solid transparent;
+}
+
+.ant-select-selector{
+  width: 100%;
 }

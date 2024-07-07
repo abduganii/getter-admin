@@ -50,9 +50,11 @@ const AuthPage = () => {
         return (
           <>
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
-            <GlobalIcons
+              <GlobalIcons
+                
                 placeholder={"name"}
-                  type="text"
+                type="text"
+                className={'w-full'}
                   formik={formik}
                   value={formik.values.email}
                   name={"email"}
@@ -62,7 +64,8 @@ const AuthPage = () => {
                   />
               <GlobalIcons
                 placeholder={"password"}
-                 type="text"
+                type="text"
+                className={'w-full'}
                   formik={formik}
                   value={formik.values.password}
                   name={"password"}
