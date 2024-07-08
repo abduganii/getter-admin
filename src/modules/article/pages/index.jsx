@@ -15,9 +15,9 @@ const IndexPage = () => {
     fetchNextPage,
     hasNextPage
   } = useInfiniteQuery(
-    ["sale-product"],
+    ["article"],
     async ({ pageParam = 1 }) =>
-      (await GetAllData("sale-product", {
+      (await GetAllData("article", {
         limit: pageSize,
         page: pageParam
       })) || {},
@@ -44,11 +44,11 @@ const IndexPage = () => {
             <GlobalTable
               key={e?.id}
               id={e?.id}
-              fields={[e?.title, e?.link, e?.regularPrice]}
+              fields={[e?.title, e?.user?.name, e?.likesCount]}
               confirm={false}
               show={true}
-              update={() => navigate(`/sale-product/${e?.id}`)}
-              ondelete={"sale-product"}
+              update={() => navigate(`/article/${e?.id}`)}
+              ondelete={"article"}
             />
           ))}
         <div ref={ref} style={{ padding: "10px" }}></div>

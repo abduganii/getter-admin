@@ -1,3 +1,4 @@
+import { ArticleRoute } from "./article/route";
 import { CategoriesRoute } from "./categories/route";
 import { DashboardRoute } from "./dashboard/route";
 import { DeveloperRoute } from "./developer/route";
@@ -10,11 +11,12 @@ const routes = [
   //   ...notFound,
   ...DashboardRoute,
   ...SitesRoute,
+  ...ArticleRoute,
   ...DeveloperRoute,
   ...SaleProductRoute,
   ...CategoriesRoute,
   ...OurserviceRoute,
-  ...OrderRoute
+  ...OrderRoute,
 ];
 const rolename = "admin";
 

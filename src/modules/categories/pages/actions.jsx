@@ -8,85 +8,82 @@ import { GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 
 const Actions = () => {
-  const [loader, setLoader] = useState()
-  const navigate = useNavigate()
+  const [loader, setLoader] = useState();
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
     ["categoriesId", id],
-    () =>
-      GetByIdData("categories", id),
+    () => GetByIdData("categories", id),
     {
       enabled: id !== "new"
     }
   );
-  console.log(DataOne?.data)
   return (
     <div className={"ml-[260px] w-full"}>
-    <FormContainer
-      url={"categories"}
-      isFormData={false}
-      setLoader={setLoader}
-      loaderGlob={loader}
-      
-    fields={[
-      {
-        name: "title",
-        validations: [{ type: "required" }],
-        value:  DataOne?.data?.title || ""
-      },
-   
-      {
-        name: "type",
-        validations: [{ type: "required" }],
-        value:  DataOne?.data?.type || ""
-      },
-    
-    ]}
-    onSuccess={() => {
-      navigate("/categories");
-    }}
-    onError={(e) => {
-      console.log(e, "onError");
-    }}
-    onFinal={() => {
-      setLoader(false);
-    }}
-    // onSubmit={() => {
-    // }}
-    validateOnMount={false}
-  >
-      {(formik) => {
-        return (
-          <>
-            <GlobalAvtion title={"Категории"} />
-            <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
-              <GlobalIcons
-                   className={'w-full'}
-                placeholder={"type"}
-                 type="text"
+      <FormContainer
+        url={"categories"}
+        isFormData={false}
+        setLoader={setLoader}
+        loaderGlob={loader}
+        fields={[
+          {
+            name: "title",
+            validations: [{ type: "required" }],
+            value: DataOne?.title || ""
+          },
+
+          {
+            name: "type",
+            validations: [{ type: "required" }],
+            value: DataOne?.type || ""
+          }
+        ]}
+        onSuccess={() => {
+          navigate("/categories");
+        }}
+        onError={(e) => {
+          console.log(e, "onError");
+        }}
+        onFinal={() => {
+          setLoader(false);
+        }}
+        // onSubmit={() => {
+        // }}
+        validateOnMount={false}
+      >
+        {(formik) => {
+          return (
+            <>
+              <GlobalAvtion title={"Категории"} />
+              <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
+                <GlobalIcons
+                  className={"w-full"}
+                  placeholder={"type"}
+                  type="text"
                   formik={formik}
                   value={formik.values.type}
                   name={"type"}
                   id={"type"}
-                  errors={formik.errors.type} 
+                  errors={formik.errors.type}
                   required={true}
                 />
-              <GlobalIcons placeholder={"name"}
-                type="text"
-                className={'w-full'}
+                <GlobalIcons
+                  placeholder={"name"}
+                  type="text"
+                  className={"w-full"}
                   formik={formik}
                   value={formik.values.title}
                   name={"title"}
                   id={"title"}
-                errors={formik.errors.title} 
-                required={true}
-                  />
-           
-            </div>
-          </>)
-      }}
+                  errors={formik.errors.title}
+                  required={true}
+                />
+              </div>
+            </>
+          );
+        }}
       </FormContainer>
-      </div>
+    </div>
   );
 };
 
