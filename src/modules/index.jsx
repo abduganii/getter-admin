@@ -2,8 +2,10 @@ import { ArticleRoute } from "./article/route";
 import { CategoriesRoute } from "./categories/route";
 import { DashboardRoute } from "./dashboard/route";
 import { DeveloperRoute } from "./developer/route";
+import { DocumentRoute } from "./docs/route";
 import { OrderRoute } from "./order/route";
 import { OurserviceRoute } from "./our-service/route";
+import { PortfolioRoute } from "./portfolio/route";
 import { PositionRoute } from "./position/route";
 import { SaleProductRoute } from "./sale-product/route";
 import { SitesRoute } from "./site/route";
@@ -16,6 +18,8 @@ const routes = [
   ...ArticleRoute,
   ...DeveloperRoute,
   ...SaleProductRoute,
+  ...PortfolioRoute,
+  ...DocumentRoute,
   ...CategoriesRoute,
   ...OurserviceRoute,
   ...UsersRoute,

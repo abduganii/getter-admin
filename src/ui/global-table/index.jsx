@@ -3,6 +3,7 @@ import { useQueryClient } from "react-query";
 import { DeleteDataId } from "../../service/global";
 import { CkeckIcons, DeleteIcons, EtidIcons, EyeIcons } from "../icons";
 import { Popconfirm } from "antd";
+import { FileRemove } from "../../service/upload";
 
 const GlobalTable = ({
   image,
@@ -12,7 +13,8 @@ const GlobalTable = ({
   update,
   ondelete,
   show,
-  id
+  id,
+  fileid
 }) => {
   const queryClient = useQueryClient();
 
@@ -50,8 +52,11 @@ const GlobalTable = ({
             title="Delete the task"
             description="Are you sure to delete this task?"
             onConfirm={async () => {
-              await DeleteDataId(ondelete, id).then((e) => {
+              await DeleteDataId(ondelete, id).then(async (e) => {
                 queryClient.invalidateQueries([ondelete]);
+                if (fileid) {
+                  await FileRemove(fileid);
+                }
               });
             }}
             okText="Yes"

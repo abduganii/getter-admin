@@ -40,6 +40,7 @@ const SitesPage = () => {
           <GlobalTable
             key={e?.id}
             id={e?.id}
+          
             fields={[,e?.title, e?.type]}
             confirm={false}
             show={true}
