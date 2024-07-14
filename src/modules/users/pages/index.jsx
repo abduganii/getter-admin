@@ -4,7 +4,7 @@ import { GetAllData } from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
-const IndexPage = () => {
+const SitesPage = () => {
   const navigate = useNavigate();
   const { ref, inView } = useInView();
   const pageSize = 25;
@@ -15,12 +15,13 @@ const IndexPage = () => {
     fetchNextPage,
     hasNextPage
   } = useInfiniteQuery(
-    ["developer"],
+    ["users"],
     async ({ pageParam = 1 }) =>
-      (await GetAllData("developer", {
+      (await GetAllData("users", {
         limit: pageSize,
         page: pageParam
       })) || {},
+
     {
       getNextPageParam: (lastPage) => {
         return lastPage?.meta?.currentPage + 1;
@@ -36,20 +37,19 @@ const IndexPage = () => {
   const DataArr = data?.pages?.length
     ? data?.pages?.reduce((acc, page) => [...acc, ...page?.items], [])
     : [];
+
   return (
     <>
-      <div className="mx-auto w-full h-full  max-w-[792px] mt-[30px] items-center">
+      <div className="mx-auto w-full max-w-[792px] mt-[30px] items-center">
         {DataArr &&
           DataArr?.map((e) => (
             <GlobalTable
               key={e?.id}
               id={e?.id}
-              fields={[e?.firstName, e?.lastName, e?.position?.title]}
+              fields={[e?.name, e?.email]}
               confirm={false}
               show={true}
-              fileid={e?.avatar}
-              update={() => navigate(`/developer/${e?.id}`)}
-              ondelete={"developer"}
+              ondelete={"users"}
             />
           ))}
         <div ref={ref} style={{ padding: "10px" }}></div>
@@ -58,4 +58,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default SitesPage;

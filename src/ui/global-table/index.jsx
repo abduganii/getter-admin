@@ -2,6 +2,8 @@ import React from "react";
 import { useQueryClient } from "react-query";
 import { DeleteDataId } from "../../service/global";
 import { CkeckIcons, DeleteIcons, EtidIcons, EyeIcons } from "../icons";
+import { Popconfirm } from "antd";
+import { FileRemove } from "../../service/upload";
 
 const GlobalTable = ({
   image,
@@ -11,14 +13,16 @@ const GlobalTable = ({
   update,
   ondelete,
   show,
-  id
+  id,
+  fileid
 }) => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
+
   return (
     <li className="group hover:bg-purple-50  flex justify-between items-start gap-4 p-[6px]">
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
-        fields?.map((e,i) => (
+        fields?.map((e, i) => (
           <p
             key={i}
             className="w-full max-w-[220px] text-neutral-900 text-[22px] font-normal truncate"
@@ -44,14 +48,24 @@ const GlobalTable = ({
           </div>
         )}
         {ondelete && (
-          <div className="w-[24px] hidden group-hover:block" onClick={async() => {
-            await DeleteDataId(ondelete, id)
-              .then(e => {
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={async () => {
+              await DeleteDataId(ondelete, id).then(async (e) => {
                 queryClient.invalidateQueries([ondelete]);
-              })
-          }}>
-            <DeleteIcons />
-          </div>
+                if (fileid) {
+                  await FileRemove(fileid);
+                }
+              });
+            }}
+            okText="Yes"
+            cancelText="No"
+          >
+            <div className="w-[24px] hidden group-hover:block">
+              <DeleteIcons />
+            </div>
+          </Popconfirm>
         )}
       </div>
     </li>

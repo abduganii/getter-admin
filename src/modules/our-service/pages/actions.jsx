@@ -59,7 +59,7 @@ const Actions = () => {
           console.log(formik)
         return (
           <>
-            <GlobalAvtion title={"Категории"} />
+            <GlobalAvtion title={"Услуги"} />
             <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
               <GlobalIcons
                 placeholder={"title"}

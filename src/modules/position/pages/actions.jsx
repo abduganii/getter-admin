@@ -7,27 +7,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 
-const typeArr = [
-  {
-    id: "article",
-    title: "article"
-  },
-  {
-    id: "portfolio",
-    title: "portfolio"
-  },
-  {
-    id: "sale",
-    title: "sale"
-  }
-];
 const Actions = () => {
   const [loader, setLoader] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
-    ["categoriesId", id],
-    () => GetByIdData("categories", id),
+    ["positionId", id],
+    () => GetByIdData("position", id),
     {
       enabled: id !== "new"
     }
@@ -35,7 +21,7 @@ const Actions = () => {
   return (
     <div className={"ml-[260px] w-full"}>
       <FormContainer
-        url={"categories"}
+        url={"position"}
         isFormData={false}
         setLoader={setLoader}
         loaderGlob={loader}
@@ -44,16 +30,10 @@ const Actions = () => {
             name: "title",
             validations: [{ type: "required" }],
             value: DataOne?.title || ""
-          },
-
-          {
-            name: "type",
-            validations: [{ type: "required" }],
-            value: DataOne?.type || ""
           }
         ]}
         onSuccess={() => {
-          navigate("/categories");
+          navigate("/position");
         }}
         onError={(e) => {
           console.log(e, "onError");
@@ -68,10 +48,10 @@ const Actions = () => {
         {(formik) => {
           return (
             <>
-              <GlobalAvtion title={"Категории"} />
+              <GlobalAvtion title={"Должность"} />
               <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
                 <GlobalIcons
-                  placeholder={"name"}
+                  placeholder={"title"}
                   type="text"
                   className={"w-full"}
                   formik={formik}
@@ -80,22 +60,6 @@ const Actions = () => {
                   id={"title"}
                   errors={formik.errors.title}
                   required={true}
-                />
-
-                <GlobalIcons
-                  placeholder={"type"}
-                  type="select"
-                  className="w-full"
-                  formik={formik}
-                  value={formik.values.type}
-                  name={"type"}
-                  id={"type"}
-                  errors={formik.errors.type}
-                  localChange={(e) => {
-                    formik.setFieldValue(`type`, e);
-                  }}
-                  required={true}
-                  options={typeArr}
                 />
               </div>
             </>

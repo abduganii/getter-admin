@@ -4,62 +4,65 @@ import GlobalIcons from "../../../ui/global-input";
 import FileUpload from "../../../ui/file-upload";
 import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
-import { GetByIdData } from "../../../service/global";
+import { GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 
-const typeArr = [
-  {
-    id: "article",
-    title: "article"
-  },
-  {
-    id: "portfolio",
-    title: "portfolio"
-  },
-  {
-    id: "sale",
-    title: "sale"
-  }
-];
 const Actions = () => {
   const [loader, setLoader] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
   const { data: DataOne, isLoading: productLoader } = useQuery(
-    ["categoriesId", id],
-    () => GetByIdData("categories", id),
+    ["documentId", id],
+    () => GetByIdData("document", id),
     {
       enabled: id !== "new"
     }
   );
+  const { data: categories, isLoading: categoriesLoader } = useQuery(
+    ["categoriesForsale"],
+    () => GetAllData("categories")
+  );
+  console.log(categories);
   return (
     <div className={"ml-[260px] w-full"}>
       <FormContainer
-        url={"categories"}
+        url={"document"}
         isFormData={false}
         setLoader={setLoader}
         loaderGlob={loader}
         fields={[
           {
-            name: "title",
+            name: "name",
             validations: [{ type: "required" }],
-            value: DataOne?.title || ""
+            value: DataOne?.name || ""
           },
 
           {
-            name: "type",
+            name: "categories",
+            value: DataOne?.data?.categories?.map((e) => e.id) || [],
+            validationType: "array"
+          },
+          {
+            name: "file",
             validations: [{ type: "required" }],
-            value: DataOne?.type || ""
+            value: DataOne?.file || ""
           }
         ]}
         onSuccess={() => {
-          navigate("/categories");
+          navigate("/document");
         }}
         onError={(e) => {
           console.log(e, "onError");
         }}
         onFinal={() => {
           setLoader(false);
+        }}
+        customData={(data) => {
+          let retrData = JSON.parse(JSON.stringify(data));
+          retrData.categories = categories?.items.filter((item) =>
+            retrData?.categories?.includes(item.id)
+          );
+          return retrData;
         }}
         // onSubmit={() => {
         // }}
@@ -68,34 +71,41 @@ const Actions = () => {
         {(formik) => {
           return (
             <>
-              <GlobalAvtion title={"Категории"} />
+              <GlobalAvtion title={"Документы"} />
               <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
                 <GlobalIcons
                   placeholder={"name"}
                   type="text"
                   className={"w-full"}
                   formik={formik}
-                  value={formik.values.title}
-                  name={"title"}
-                  id={"title"}
-                  errors={formik.errors.title}
+                  value={formik.values.name}
+                  name={"name"}
+                  id={"name"}
+                  errors={formik.errors.name}
                   required={true}
                 />
-
                 <GlobalIcons
-                  placeholder={"type"}
+                  placeholder={"categories"}
                   type="select"
                   className="w-full"
                   formik={formik}
-                  value={formik.values.type}
-                  name={"type"}
-                  id={"type"}
-                  errors={formik.errors.type}
+                  mode="multiple"
+                  value={formik.values.categories || ""}
+                  name={"categories"}
+                  id={"categories"}
+                  errors={formik.errors.categories}
                   localChange={(e) => {
-                    formik.setFieldValue(`type`, e);
+                    formik.setFieldValue(`categories`, e);
                   }}
                   required={true}
-                  options={typeArr}
+                  options={categories?.items || []}
+                />
+                <FileUpload
+                  name={"file"}
+                  type="file"
+                  formik={formik}
+                  value={formik.values.file}
+                  title={"file"}
                 />
               </div>
             </>
