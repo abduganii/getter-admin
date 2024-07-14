@@ -19,7 +19,7 @@ const GlobalTable = ({
   const queryClient = useQueryClient();
 
   return (
-    <li className="group hover:bg-purple-50  flex justify-between items-center gap-4 p-[6px]">
+    <li onClick={update} className="group hover:bg-purple-50  flex justify-between items-center gap-4 p-[6px]">
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
         fields?.map((e, i) => (
@@ -32,18 +32,21 @@ const GlobalTable = ({
         ))}
 
       {OnConfirm && !confirm && (
-        <div onClick={OnConfirm} className="w-[24px] cursor-pointer">
+        <div onClick={(e) => {
+           e.stopPropagation()
+          OnConfirm(e)
+        }} className="w-[24px] cursor-pointer">
           <CkeckIcons />
         </div>
       )}
-      <div className="flex min-w-[72px] cursor-pointer items-start gap-[5px]">
+      <div onClick={(e)=> e.stopPropagation()} className="flex min-w-[72px] cursor-pointer items-start gap-[5px]">
         {show && (
           <div className="w-[24px] hidden group-hover:block">
             <EyeIcons />
           </div>
         )}
         {update && (
-          <div className="w-[24px] hidden group-hover:block" onClick={update}>
+          <div className="w-[24px] hidden group-hover:block" onClick={update} >
             <EtidIcons />
           </div>
         )}
@@ -51,7 +54,7 @@ const GlobalTable = ({
           <Popconfirm
             title="Delete the task"
             description="Are you sure to delete this task?"
-            onConfirm={async () => {
+            onConfirm={async (e) => {
               await DeleteDataId(ondelete, id).then(async (e) => {
                 queryClient.invalidateQueries([ondelete]);
                 if (fileid) {
@@ -62,7 +65,7 @@ const GlobalTable = ({
             okText="Yes"
             cancelText="No"
           >
-            <div className="w-[24px] hidden group-hover:block">
+            <div className="w-[24px] hidden group-hover:block"   >
               <DeleteIcons />
             </div>
           </Popconfirm>
