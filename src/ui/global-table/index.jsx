@@ -19,7 +19,7 @@ const GlobalTable = ({
   const queryClient = useQueryClient();
 
   return (
-    <li className="group hover:bg-purple-50  flex justify-between items-start gap-4 p-[6px]">
+    <li className="group hover:bg-purple-50  flex justify-between items-center gap-4 p-[6px]">
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
         fields?.map((e, i) => (
