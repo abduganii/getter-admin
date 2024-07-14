@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FormContainer } from "../../../components/Forms";
 import { AuthStore } from "../../../service/upload";
 import GlobalIcons from "../../../ui/global-input";
+import { LoginIcons } from "../../../ui/icons";
 
 const AuthPage = () => {
   const [loader, setLoader] = useState()
@@ -49,12 +50,13 @@ const AuthPage = () => {
       {(formik) => {
         return (
           <>
-            <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
+            <div className="w-full text-center relative max-w-[530px] mx-auto rounded-[7px] overflow-hidden">
+                <img src="/GetterAdmin.svg" alt="img" className='mx-auto mb-[60px] mt-[100px]'/>
+
               <GlobalIcons
-                
-                placeholder={"name"}
+                placeholder={"Login"}
                 type="text"
-                className={'w-full'}
+                className={'w-full py-[10px]'}
                   formik={formik}
                   value={formik.values.email}
                   name={"email"}
@@ -63,9 +65,9 @@ const AuthPage = () => {
                 required={true}
                   />
               <GlobalIcons
-                placeholder={"password"}
+                placeholder={"Parol"}
                 type="text"
-                className={'w-full'}
+                className={'w-full py-[10px]'}
                   formik={formik}
                   value={formik.values.password}
                   name={"password"}
@@ -74,7 +76,9 @@ const AuthPage = () => {
                   required={true}
                 />
             
-            <button type="submit">send</button>
+              <button className={`absolute bottom-[12px] right-[16px] px-[10px] py-[5px] cursor-pointer ${ !loader&&formik.values.password &&  formik.values.email ? "bg-violet-700 rounded-[20px] " :""}`} type="submit">
+                <LoginIcons color={ !loader&&formik.values.password &&  formik.values.email ? "white" :"gray"} />
+             </button>
             </div>
           </>)
       }}

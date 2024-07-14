@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { filteredRoutes } from "../modules";
+import { Loginout } from "../service/auth";
 import { PlusIcons } from "../ui/icons";
 const MainLayout = () => {
   const location = useLocation();
@@ -21,6 +22,17 @@ const MainLayout = () => {
             {e?.label}
           </Link>
         ))}
+        <div
+          onClick={async() => {
+            await Loginout()
+              .then(() => {
+                window.localStorage.clear("getterToken")
+                navigate('/auth/login')
+            })
+          }}
+            className={`text-neutral-900 cursor-pointer text-[22px] font-normal w-full block hover:text-violet-700`}>
+            logout
+        </div>
       </div>
 
       <Outlet />
