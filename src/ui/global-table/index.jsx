@@ -32,7 +32,7 @@ const GlobalTable = ({
           <CkeckIcons />
         </div>
       )}
-      <div className="flex min-w-[72px] cursor-pointer items-start gap-[2px]">
+      <div className="flex min-w-[72px] cursor-pointer items-start gap-[5px]">
         {show && (
           <div className="w-[24px] hidden group-hover:block">
             <EyeIcons />
