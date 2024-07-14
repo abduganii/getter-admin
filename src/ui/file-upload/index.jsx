@@ -38,7 +38,7 @@ const FileUpload = ({ name, title, value, type, formik, setRemoveImageId }) => {
       ) : (
         <div className="flex items-center  gap-[7px]">
           <UploadIcons />
-          <p class="text-zinc-400 text-[22px] font-normal font-['SF Pro Display']">
+          <p className="text-zinc-400 text-[22px] font-normal font-['SF Pro Display']">
             {title}
           </p>
         </div>

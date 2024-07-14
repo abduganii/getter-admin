@@ -12,18 +12,18 @@ const GlobalAvtion = ({ title }) => {
         onClick={() => navigate(-1)}
       >
         <LeftIcons />
-        <p class="text-neutral-900 text-[22px] font-medium">{title}</p>
+        <p className="text-neutral-900 text-[22px] font-medium">{title}</p>
       </div>
       <div className="flex items-center gap-[40px]">
         <p
           onClick={() => navigate(-1)}
-          class="text-neutral-900 text-[22px] font-medium cursor-pointer"
+          className="text-neutral-900 text-[22px] font-medium cursor-pointer"
         >
           Отмена
         </p>
         <button
           type="submit"
-          class="min-w-[180px]  bg-violet-700 text-center text-white text-[22px] font-semibold  py-[24px] inline-block px-[35px]"
+          className="min-w-[180px]  bg-violet-700 text-center text-white text-[22px] font-semibold  py-[24px] inline-block px-[35px]"
         >
           {id == "new" ? "Сохранить" : "Изменить"}
         </button>

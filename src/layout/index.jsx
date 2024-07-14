@@ -6,10 +6,11 @@ const MainLayout = () => {
   const navigate = useNavigate();
   return (
     <div className="flex gap-[40px] w-full h-screen">
-      <div class="w-full max-w-[240px] h-screen bg-white border-r border-zinc-100 p-[37px] py-[17px] fixed top-0 left-0">
+      <div className="w-full max-w-[240px] h-screen bg-white border-r border-zinc-100 p-[37px] py-[17px] fixed top-0 left-0">
         <img src="/Getter.svg" alt="hds" className="mb-[37px]" />
-        {filteredRoutes?.map((e) => (
+        {filteredRoutes?.map((e,i) => (
           <Link
+              key={i}
             className={`${
               e?.url.includes(location.pathname)
                 ? "text-violet-700"
