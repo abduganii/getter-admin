@@ -19,7 +19,7 @@ const GlobalTable = ({
   const queryClient = useQueryClient();
 
   return (
-    <li onClick={update} className="group hover:bg-purple-50  flex justify-between items-center gap-4 p-[6px]">
+    <li onClick={update ? update :()=>{} } className="group hover:bg-purple-50  flex justify-between items-center gap-4 p-[6px]">
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
         fields?.map((e, i) => (
@@ -42,7 +42,7 @@ const GlobalTable = ({
       <div onClick={(e)=> e.stopPropagation()} className="flex min-w-[72px] cursor-pointer items-start gap-[5px]">
         {show && (
           <div className="w-[24px] hidden group-hover:block">
-            <EyeIcons />
+            <EyeIcons   onClick={update ? update :()=>{} }/>
           </div>
         )}
         {update && (
