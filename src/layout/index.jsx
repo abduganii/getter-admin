@@ -1,3 +1,4 @@
+import { Popconfirm } from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { filteredRoutes } from "../modules";
 import { Loginout } from "../service/auth";
@@ -22,17 +23,26 @@ const MainLayout = () => {
             {e?.label}
           </Link>
         ))}
-        <div
-          onClick={async() => {
+        <Popconfirm
+            title="Corfirm to log out"
+            description="Are you sure to log out?"
+            onConfirm={async() => {
             await Loginout()
               .then(() => {
                 window.localStorage.clear("getterToken")
                 navigate('/auth/login')
             })
           }}
+            okText="Yes"
+            cancelText="No"
+          >
+          <div
+        
             className={`text-neutral-900 cursor-pointer text-[22px] font-normal w-full block hover:text-violet-700`}>
             logout
         </div>
+          </Popconfirm>
+        
       </div>
 
       <Outlet />
