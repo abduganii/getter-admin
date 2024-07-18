@@ -6,6 +6,7 @@ import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
 import { AddData, GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import FileUploadMilty from "../../../ui/file-multi-upload";
 const Actions = () => {
   const [loader, setLoader] = useState();
   const navigate = useNavigate();
@@ -84,6 +85,11 @@ const Actions = () => {
           {
             name: "developers",
             value: DataOne?.developers || [],
+            validationType: "array"
+          },
+          {
+            name: "avatar",
+            value: DataOne?.avatar || [],
             validationType: "array"
           }
         ]}
@@ -196,7 +202,7 @@ const Actions = () => {
                     errors={formik.errors.title}
                     required={true}
                   />
-                  <FileUpload
+                  <FileUploadMilty
                     name={"avatar"}
                     formik={formik}
                     value={formik.values.avatar}
