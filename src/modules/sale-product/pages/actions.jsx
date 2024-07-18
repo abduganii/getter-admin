@@ -88,8 +88,8 @@ const Actions = () => {
             validationType: "array"
           },
           {
-            name: "avatar",
-            value: DataOne?.avatar || [],
+            name: "media",
+            value: DataOne?.media || [],
             validationType: "array"
           }
         ]}
@@ -203,9 +203,9 @@ const Actions = () => {
                     required={true}
                   />
                   <FileUploadMilty
-                    name={"avatar"}
+                    name={"media"}
                     formik={formik}
-                    value={formik.values.avatar}
+                    value={formik.values.media}
                     title={""}
                   />
                   <GlobalIcons
