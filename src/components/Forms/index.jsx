@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { isFunction } from "lodash";
 import { formHelpers } from "../formHelpers.js";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { AddData, UpdateData, UpdateDataOne } from "../../service/global.js";
 
 
@@ -33,7 +33,7 @@ export const FormContainer = ({
       await AddData(url, formValues)
         .then((res) => {
           if (res?.status == "200" || res?.status == "201") {
-           
+            toast.success("seccessfully created");
             onSuccess(res);
           }
         })

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { AuthorizedRoutes, UnAuthorizedRoutes } from "./router/index";
-// import { GetMe } from "./service/global";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import GlobalLoader from "./ui/global-loader";
 import {  GetMe } from "./service/global";
 import { AuthStore } from "./service/upload";
+import  { Toaster } from 'react-hot-toast';
 function App() {
   const isAuth = window.localStorage.getItem("getterToken") ;
   const [loading, setLoading] = useState(false);
@@ -41,6 +42,7 @@ function App() {
     <>
       {isAuth ? <AuthorizedRoutes /> : <UnAuthorizedRoutes />}
       {loading ? <GlobalLoader /> : ""}
+      <Toaster />
     </>
   );
 }

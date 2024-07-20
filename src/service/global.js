@@ -1,6 +1,6 @@
-import { toast } from "react-toastify";
 import api from "./api";
 import qs from "qs";
+import toast from 'react-hot-toast';
 
 export const GetAllData = async (url, query) => {
   try {
@@ -75,6 +75,7 @@ const handleError = (error) => {
     window.location.replace("/auth/login");
     window.localStorage.removeItem("getterToken");
   }
+  console.log(error)
   toast.error(
       error?.response?.data?.message ||
       "error not given"

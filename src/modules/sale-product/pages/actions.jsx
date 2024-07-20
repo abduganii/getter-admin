@@ -119,7 +119,6 @@ const Actions = () => {
         validateOnMount={false}
       >
         {(formik) => {
-          console.log(formik);
           return (
             <>
               <GlobalAvtion title={"Продажа"} />
