@@ -205,7 +205,7 @@ const Actions = () => {
                     name={"media"}
                     formik={formik}
                     value={formik.values.media}
-                    title={""}
+                    title={"media"}
                   />
                   <GlobalIcons
                     placeholder={"link"}

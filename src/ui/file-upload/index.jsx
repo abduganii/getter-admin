@@ -11,7 +11,7 @@ const FileUpload = ({ name, title, value, type, formik, setRemoveImageId }) => {
       const file = e.target.files[0];
       await UploadFile({ file: file })
         .then((res) => {
-          if (value) {
+          if (value && setRemoveImageId) {
             setRemoveImageId(value);
           }
           formik.setFieldValue(name, res?.data?.id.toString());

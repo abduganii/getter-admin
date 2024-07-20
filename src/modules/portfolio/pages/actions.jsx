@@ -6,6 +6,7 @@ import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
 import { AddData, GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
+import FileUploadMilty from "../../../ui/file-multi-upload";
 const Actions = () => {
   const [loader, setLoader] = useState();
   const navigate = useNavigate();
@@ -64,13 +65,20 @@ const Actions = () => {
             name: "developers",
             value: DataOne?.data?.developers || [],
             validationType: "array"
+          },
+          {
+            name: "media",
+            value: DataOne?.data?.media || [],
+            validationType: "array"
           }
+          
         ]}
         customData={(data) => {
           let retrData = JSON.parse(JSON.stringify(data));
           retrData.developers = developer?.items.filter((item) =>
             retrData?.developers?.includes(item.id)
           );
+
 
           return retrData;
         }}
@@ -104,13 +112,12 @@ const Actions = () => {
                   errors={formik.errors.link}
                   required={true}
                 />
-                <FileUpload
-                  name={"file"}
-                  type="file"
-                  formik={formik}
-                  value={formik.values.file}
-                  title={"file"}
-                />
+                <FileUploadMilty
+                    name={"media"}
+                    formik={formik}
+                    value={formik.values.media}
+                    title={"media"}
+                  />
                 <GlobalIcons
                   placeholder={"secondText"}
                   type="text"
@@ -123,13 +130,14 @@ const Actions = () => {
                   required={true}
                 />
                 <div className="flex">
-                  <FileUpload
-                    name={"file"}
+              
+                   <FileUpload
+                    name={"video"}
                     type="file"
                     formik={formik}
-                    value={formik.values.file}
-                    title={"file"}
-                  />
+                    value={formik.values.video}
+                    title={"image"}
+                />
                   <GlobalIcons
                     placeholder={"comment"}
                     type="textarea"
