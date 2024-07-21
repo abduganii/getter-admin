@@ -67,7 +67,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 
 .fr-toolbar {
-  left: 650px !important;
+  left: 850px !important;
 }
 
 .fr-btn-grp {
@@ -86,7 +86,7 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 640px !important;
 }
 
-.fr-box:nth-child(2) .fr-element {
+.fr-box:nth-child(1) .fr-element {
   color: #1d1d1f;
   font-family: "Outfit";
   font-size: 40px;
@@ -95,16 +95,16 @@ input[type="number"]::-webkit-inner-spin-button {
   line-height: normal;
 }
 
-.fr-box:nth-child(2) .fr-placeholder {
+.fr-box:nth-child(1) .fr-placeholder {
   font-weight: 600;
   font-family: "Outfit";
 }
 
-.fr-box:nth-child(4) .fr-placeholder {
+.fr-box:nth-child(3) .fr-placeholder {
   font-weight: 300;
 }
 
-.fr-box:nth-child(4) .fr-element {
+.fr-box:nth-child(3) .fr-element {
   color: #1d1d1f;
   font-family: "Open Sans" !important;
   font-size: 22px;

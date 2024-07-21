@@ -66,11 +66,9 @@ const Actions = () => {
         ]}
         customData={(data) => {
           let retrData = JSON.parse(JSON.stringify(data));
-
           retrData.categories = categories?.items.filter((item) =>
             retrData?.categories?.includes(item.id)
           );
-          // retrData.avatar = [retrData.avatar];
           return retrData;
         }}
         onSuccess={() => {
@@ -87,6 +85,7 @@ const Actions = () => {
         validateOnMount={false}
       >
         {(formik) => {
+          console.log(formik.values.tags)
           return (
             <>
               <GlobalAvtion title={"Статьи / Тема Статьи"} />
@@ -126,9 +125,10 @@ const Actions = () => {
                     value={formik.values.tags.map((e) => e.title)}
                     errors={formik.errors.tags}
                     onDeselect={(e) => {
+                      console.log(e)
                       formik.setFieldValue(
                         `tags`,
-                        formik.values.tags.filter((el) => el.title != "#" + e)
+                        formik.values.tags.filter((el) => el.title != "#" + e )
                       );
                     }}
                     onSelect={async (e) => {

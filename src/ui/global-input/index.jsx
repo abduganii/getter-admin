@@ -48,7 +48,7 @@ const GlobalIcons = ({
               value={value}
             required={required}
           >
-                {placeholder}
+                
           </textarea>
       ) : (
           
