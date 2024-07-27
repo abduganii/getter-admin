@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
-import { GetAllData } from "../../../service/global";
+import {  AddDataId, GetAllData} from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
@@ -48,7 +48,13 @@ const SitesPage = () => {
               id={e?.id}
               fields={[e?.link, e?.title, e?.likesCount]}
               confirm={false}
-              OnConfirm={e?.isActive ? null : () => console.log("ok")}
+              OnConfirm={e?.isActive ? null : async() => {
+                await AddDataId('website/isActive', e?.id)
+                  .then(() => {
+                    queryClient.invalidateQueries(['website'])
+                  })
+                  .catch(err => { console.log(err) })
+              }}
               show={true}
               update={() => navigate(`/sites/${e?.id}`)}
               ondelete={"website"}

@@ -34,10 +34,26 @@ export const AddData = async (url, data) => {
     handleError(error);
   }
 };
+export const AddDataId = async (url, id) => {
+  try {
+    const response = await api.patch(`/${url}/${id}`);
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
+};
 
 export const UpdateData = async (url, data, id) => {
   try {
     const response = await api.put(`/${url}/${id}`, data);
+    return response;
+  } catch (error) {
+    handleError(error);
+  }
+};
+export const UpdateDataId = async (url, id) => {
+  try {
+    const response = await api.put(`/${url}/${id}`);
     return response;
   } catch (error) {
     handleError(error);

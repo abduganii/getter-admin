@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useInfiniteQuery, useQuery } from "react-query";
-import { GetAllData } from "../../../service/global";
+import { AddDataId, GetAllData } from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +46,13 @@ const IndexPage = () => {
               id={e?.id}
               fields={[e?.title, e?.user?.name, e?.likesCount]}
               confirm={false}
+              OnConfirm={e?.isActive ? null : async() => {
+                await AddDataId('article/isActive', e?.id)
+                  .then(() => {
+                    queryClient.invalidateQueries(['article'])
+                  })
+                  .catch(err => { console.log(err) })
+              }}
               show={true}
               update={() => navigate(`/article/${e?.id}`)}
               ondelete={"article"}

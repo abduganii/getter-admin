@@ -38,8 +38,8 @@ const GlobalTable = ({
         }} className="w-[24px] cursor-pointer">
           <CkeckIcons />
         </div>
-      )}
-      <div onClick={(e)=> e.stopPropagation()} className="flex min-w-[72px] cursor-pointer items-start gap-[5px]">
+      ) }
+      <div onClick={(e)=> e.stopPropagation()} className="flex min-w-[90px] cursor-pointer items-start gap-[8px]">
         {show && (
           <div className="w-[24px] hidden group-hover:block">
             <EyeIcons   onClick={update ? update :()=>{} }/>
