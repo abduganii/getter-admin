@@ -23,12 +23,9 @@ const GlobalTable = ({
       {image && <img width={100} src={image} className="object-contain" />}
       {fields &&
         fields?.map((e, i) => (
-          <p
-            key={i}
-            className="w-full max-w-[220px] text-neutral-900 text-[22px] font-normal truncate"
-          >
-            {e}
-          </p>
+        
+          <p key={i}
+            className="w-full max-w-[220px] text-neutral-900 text-[22px] font-normal truncate" dangerouslySetInnerHTML={{ __html: e }} />
         ))}
 
       {OnConfirm && !confirm && (

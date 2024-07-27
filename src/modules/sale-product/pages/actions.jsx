@@ -155,7 +155,7 @@ const Actions = () => {
                       formik.setFieldValue(
                         `directions`,
                         formik.values.directions.filter(
-                          (el) => el.title != "#" + e
+                          (el) => el.title != e
                         )
                       );
                     }}
@@ -232,7 +232,7 @@ const Actions = () => {
                       formik.setFieldValue(
                         `technologies`,
                         formik.values.technologies.filter(
-                          (el) => el.title != "#" + e
+                          (el) => el.title !=  e
                         )
                       );
                     }}

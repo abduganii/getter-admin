@@ -125,10 +125,9 @@ const Actions = () => {
                     value={formik.values.tags.map((e) => e.title)}
                     errors={formik.errors.tags}
                     onDeselect={(e) => {
-                      console.log(e)
                       formik.setFieldValue(
                         `tags`,
-                        formik.values.tags.filter((el) => el.title != "#" + e )
+                        formik.values.tags.filter((el) => el.title !=e )
                       );
                     }}
                     onSelect={async (e) => {
