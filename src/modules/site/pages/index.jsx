@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
-import {  AddDataId, GetAllData} from "../../../service/global";
+import { useInfiniteQuery, useQuery, useQueryClient } from "react-query";
+import {  AddDataId, GetAllData, UpdateData, UpdateDataId} from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const SitesPage = () => {
   const navigate = useNavigate();
   const { ref, inView } = useInView();
   const pageSize = 25;
-
+  const queryClient = useQueryClient();
   const {
     data,
     isLoading: isLoading,
@@ -49,7 +49,9 @@ const SitesPage = () => {
               fields={[e?.link, e?.title, e?.likesCount]}
               confirm={false}
               OnConfirm={e?.isActive ? null : async() => {
-                await AddDataId('website/isActive', e?.id)
+                await UpdateData('website/isActive', {
+                  isActive:true
+                }, e?.id)
                   .then(() => {
                     queryClient.invalidateQueries(['website'])
                   })

@@ -34,9 +34,10 @@ export const AddData = async (url, data) => {
     handleError(error);
   }
 };
-export const AddDataId = async (url, id) => {
+export const AddDataId = async (url, id,data) => {
   try {
-    const response = await api.patch(`/${url}/${id}`);
+
+    const response = await api.patch(`/${url}/${id}`,data);
     return response;
   } catch (error) {
     handleError(error);
@@ -51,9 +52,12 @@ export const UpdateData = async (url, data, id) => {
     handleError(error);
   }
 };
-export const UpdateDataId = async (url, id) => {
+export const UpdateDataId = async (url, id,query) => {
   try {
-    const response = await api.put(`/${url}/${id}`);
+    const params = query
+    ? `?${qs.stringify(query, { arrayFormat: "repeat" })}`
+    : "";
+    const response = await api.put(`/${url}/${id}${params}`);
     return response;
   } catch (error) {
     handleError(error);

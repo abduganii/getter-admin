@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery, useQuery, useQueryClient } from "react-query";
 import { AddDataId, GetAllData } from "../../../service/global";
 import GlobalTable from "../../../ui/global-table";
 import { useInView } from "react-intersection-observer";
@@ -8,7 +8,7 @@ const IndexPage = () => {
   const navigate = useNavigate();
   const { ref, inView } = useInView();
   const pageSize = 25;
-
+  const queryClient = useQueryClient();
   const {
     data,
     isLoading: isLoading,
@@ -47,7 +47,9 @@ const IndexPage = () => {
               fields={[e?.title, e?.user?.name, e?.likesCount]}
               confirm={false}
               OnConfirm={e?.isActive ? null : async() => {
-                await AddDataId('article/isActive', e?.id)
+                await AddDataId('article/isActive', e?.id,{
+                  isActive:true
+                })
                   .then(() => {
                     queryClient.invalidateQueries(['article'])
                   })
