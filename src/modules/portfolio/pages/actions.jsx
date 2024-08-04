@@ -63,7 +63,7 @@ const Actions = () => {
           },
           {
             name: "developers",
-            value: DataOne?.data?.developers || [],
+            value: DataOne?.data?.developers?.map((e) => e.id) || [],
             validationType: "array"
           },
           {

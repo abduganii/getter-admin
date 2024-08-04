@@ -84,7 +84,7 @@ const Actions = () => {
           },
           {
             name: "developers",
-            value: DataOne?.developers || [],
+            value: DataOne?.developers?.map((e) => e.id) || [],
             validationType: "array"
           },
           {
@@ -119,6 +119,7 @@ const Actions = () => {
         validateOnMount={false}
       >
         {(formik) => {
+          console.log(formik.values)
           return (
             <>
               <GlobalAvtion title={"Продажа"} />
