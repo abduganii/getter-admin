@@ -15,12 +15,12 @@ const IndexPage = () => {
     fetchNextPage,
     hasNextPage
   } = useInfiniteQuery(
-    ["portfolio"],
+    ["product"],
     async ({ pageParam = 1 }) =>
       (await GetAllData("portfolio", {
         limit: pageSize,
         page: pageParam,
-        type:"portfolio"
+        type:"product"
       })) || {},
     {
       getNextPageParam: (lastPage) => {
@@ -50,6 +50,7 @@ const IndexPage = () => {
               show={true}
               update={() => navigate(`/portfolio/${e?.id}`)}
               ondelete={"portfolio"}
+              secondUrl={'product'}
             />
           ))}
         <div ref={ref} style={{ padding: "10px" }}></div>

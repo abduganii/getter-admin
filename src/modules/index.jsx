@@ -7,6 +7,7 @@ import { OrderRoute } from "./order/route";
 import { OurserviceRoute } from "./our-service/route";
 import { PortfolioRoute } from "./portfolio/route";
 import { PositionRoute } from "./position/route";
+import { ProductRoute } from "./product/route";
 import { SaleProductRoute } from "./sale-product/route";
 import { SitesRoute } from "./site/route";
 import { UsersRoute } from "./users/route";
@@ -15,16 +16,17 @@ const routes = [
   //   ...notFound,
   ...DashboardRoute,
   ...SitesRoute,
-  ...ArticleRoute,
-  ...DeveloperRoute,
-  ...SaleProductRoute,
   ...PortfolioRoute,
+  ...ArticleRoute,
+  ...SaleProductRoute,
   ...DocumentRoute,
-  ...CategoriesRoute,
+  ...ProductRoute,
   ...OurserviceRoute,
-  ...UsersRoute,
   ...OrderRoute,
-  ...PositionRoute
+  ...UsersRoute,
+  ...CategoriesRoute,
+  ...PositionRoute,
+  ...DeveloperRoute,
 ];
 const rolename = "admin";
 

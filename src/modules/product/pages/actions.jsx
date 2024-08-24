@@ -73,8 +73,9 @@ const Actions = () => {
           },
           {
             name: "type",
-            value: 'portfolio',
+            value: 'product',
           }
+          
         ]}
         customData={(data) => {
           let retrData = JSON.parse(JSON.stringify(data));

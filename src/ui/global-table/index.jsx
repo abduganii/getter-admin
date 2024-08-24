@@ -14,6 +14,7 @@ const GlobalTable = ({
   ondelete,
   show,
   id,
+  secondUrl,
   fileid
 }) => {
   const queryClient = useQueryClient();
@@ -53,7 +54,7 @@ const GlobalTable = ({
             description="Are you sure to delete this task?"
             onConfirm={async (e) => {
               await DeleteDataId(ondelete, id).then(async (e) => {
-                queryClient.invalidateQueries([ondelete]);
+                queryClient.invalidateQueries([ secondUrl||ondelete]);
                 if (fileid) {
                   await FileRemove(fileid);
                 }

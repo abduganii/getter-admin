@@ -1,17 +1,17 @@
 import IndexPage from "./pages";
 import Actions from "./pages/actions";
-export const PortfolioRoute = [
+export const ProductRoute = [
   {
-    url: "/portfolio",
+    url: "/product",
     Element: IndexPage,
-    label: "Portfolio",
+    label: "Product",
     meta: {
       isLoginIf: false,
       role: new Set(["admin"])
     }
   },
   {
-    url: "/portfolio/:id",
+    url: "/product/:id",
     Element: Actions,
     meta: {
       isLoginIf: false,
