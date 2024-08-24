@@ -43,9 +43,14 @@ const GlobalIcons = ({
                 formik.handleChange(e);
                 if (localChange) localChange(e);
               }}
-              className={`w-full  bg-white border border-zinc-200 px-[20px] py-[4px] text-neutral-900 text-[22px] font-normal ${className && className}`}
+              className={`w-full bg-white border border-zinc-200 px-[20px] py-[4px] text-neutral-900 text-[22px] font-normal ${className && className}`}
               placeholder={placeholder}
-              value={value}
+            value={value}
+            onInput={(e) => {
+              e.target.style.height = "auto"; // Reset height to calculate new height
+              e.target.style.height = `${e.target.scrollHeight}px`; // Set height based on scrollHeight
+            }}
+            rows={8}
             required={required}
           >
                 

@@ -123,12 +123,12 @@ const Actions = () => {
           return (
             <>
               <GlobalAvtion title={"Продажа"} />
-              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-10  overflow-hidden flex ">
-                <div className="rounded-[7px] w-full max-w-[240px]">
+              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-[100px]  overflow-hidden flex ">
+                <div className=" w-full max-w-[240px]">
                   <GlobalIcons
                     placeholder={"categories"}
                     type="select"
-                    className="w-full"
+                    className="w-full border-b-0"
                     formik={formik}
                     mode="multiple"
                     value={formik.values.categories}
@@ -145,7 +145,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"directions"}
                     type="select"
-                    className="w-full"
+                    className="w-full border-b-0"
                     formik={formik}
                     mode="tags"
                     name={"directions"}
@@ -194,7 +194,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"title"}
                     type="text"
-                    className="w-full"
+                    className="w-full border-b-0"
                     formik={formik}
                     value={formik.values.title}
                     name={"title"}
@@ -211,7 +211,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"link"}
                     type="text"
-                    className="w-full"
+                    className="w-full border-y-0"
                     formik={formik}
                     value={formik.values.link}
                     name={"link"}
@@ -222,7 +222,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"technologies"}
                     type="select"
-                    className="w-full"
+                    className="w-full border-b-0"
                     formik={formik}
                     mode="tags"
                     name={"technologies"}
@@ -268,7 +268,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"Цена (regular)"}
                     type="text"
-                    className="w-1/2"
+                    className="w-1/2 border-b-0"
                     formik={formik}
                     value={formik.values.regularPrice}
                     name={"regularPrice"}
@@ -279,7 +279,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"Цена (лицензионна)"}
                     type="text"
-                    className="w-1/2"
+                    className="w-1/2 border-b-0"
                     formik={formik}
                     value={formik.values.licensedPrice}
                     name={"licensedPrice"}
@@ -290,7 +290,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"developers"}
                     type="select"
-                    className="w-full"
+                    className="w-full border-b-0"
                     formik={formik}
                     mode="multiple"
                     value={formik.values.developers?.map(

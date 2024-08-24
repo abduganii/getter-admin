@@ -32,7 +32,7 @@ const FileUploadMilty = ({ name, title, value, formik }) => {
               {value?.length ?
                 value?.map((e) => (
                 <SwiperSlide className="w-full aspect-square max-h-[360px] ">
-                  <div className=" flex w-full items-center justify-center  bg-white rounded-bl-[7px] rounded-br-[7px] border border-zinc-200 cursor-pointer aspect-square max-h-[360px] group">
+                  <div className=" flex w-full items-center justify-center  bg-white  border border-zinc-200 cursor-pointer aspect-square max-h-[360px] group">
                         <img
                           src={`${
                             import.meta.env.VITE_API_STORE_URL
@@ -51,7 +51,7 @@ const FileUploadMilty = ({ name, title, value, formik }) => {
               )):""}
             <SwiperSlide className="aspect-square max-h-[360px] w-full">
                 <label
-                  className={`flex items-center justify-center   bg-white rounded-bl-[7px] rounded-br-[7px] border border-zinc-200 cursor-pointer aspect-square max-h-[360px] w-full`}
+                  className={`flex items-center justify-center bg-white border border-zinc-200 cursor-pointer aspect-square max-h-[360px] w-full`}
                 >
                   <div className="flex items-center  gap-[7px]">
                     <UploadIcons />

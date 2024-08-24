@@ -70,9 +70,9 @@ const Actions = () => {
         return (
           <>
             <GlobalAvtion title={"Site"} />
-            <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
+            <div className="w-full max-w-[700px] mx-auto  mb-[100px] overflow-hidden">
               <GlobalIcons
-                   className={'w-full'}
+                   className={'w-full border-b-0'}
                 placeholder={"link"}
                  type="text"
                   formik={formik}
@@ -85,7 +85,7 @@ const Actions = () => {
               <GlobalIcons
                 placeholder={"name"}
                 type="text"
-                className={'w-full'}
+                className={'w-full border-b-0'}
                 formik={formik}
                 value={formik.values.title}
                 name={"title"}

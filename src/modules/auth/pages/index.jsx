@@ -50,7 +50,7 @@ const AuthPage = () => {
       {(formik) => {
         return (
           <>
-            <div className="w-full text-center relative max-w-[530px] mx-auto rounded-[7px] overflow-hidden">
+            <div className="w-full text-center relative max-w-[530px] mx-auto  overflow-hidden">
                 <img src="/GetterAdmin.svg" alt="img" className='mx-auto mb-[60px] mt-[100px]'/>
 
               <GlobalIcons

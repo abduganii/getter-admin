@@ -22,7 +22,7 @@ const FileUpload = ({ name, title, value, type, formik, setRemoveImageId }) => {
   };
   return (
     <label
-      className={`flex items-center justify-center  bg-white rounded-bl-[7px] rounded-br-[7px] border border-zinc-200 cursor-pointer aspect-square max-h-[360px] ${
+      className={`flex items-center justify-center  bg-white  border border-zinc-200 cursor-pointer aspect-square max-h-[360px] ${
         type == "avatar"
           ? "min-w-[107px] w-[107px] rounded-bl-0 rounded-br-0"
           : " w-full"

@@ -72,7 +72,7 @@ const Actions = () => {
           return (
             <>
               <GlobalAvtion title={"Документы"} />
-              <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
+              <div className="w-full max-w-[700px] mx-auto  mb-[100px] overflow-hidden">
                 <GlobalIcons
                   placeholder={"name"}
                   type="text"
@@ -87,7 +87,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"categories"}
                   type="select"
-                  className="w-full"
+                  className="w-full border-y-0"
                   formik={formik}
                   mode="multiple"
                   value={formik.values.categories || ""}

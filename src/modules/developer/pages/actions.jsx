@@ -74,7 +74,7 @@ const Actions = () => {
           return (
             <>
               <GlobalAvtion title={"Site"} />
-              <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden flex ">
+              <div className="w-full max-w-[700px] mx-auto mb-[100px] overflow-hidden flex ">
                 <FileUpload
                   name={"avatar"}
                   type="avatar"

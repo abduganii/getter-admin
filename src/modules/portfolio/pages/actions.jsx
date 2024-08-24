@@ -102,12 +102,12 @@ const Actions = () => {
           console.log(formik);
           return (
             <>
-              <GlobalAvtion title={"Продукты"} />
-              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-10  overflow-hidden  ">
+              <GlobalAvtion title={"Protfolio"} />
+              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-[100px]  overflow-hidden  ">
                 <GlobalIcons
                   placeholder={"link"}
                   type="text"
-                  className="w-full"
+                  className="w-full border-b-0"
                   formik={formik}
                   value={formik.values.link}
                   name={"link"}
@@ -124,7 +124,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"secondText"}
                   type="text"
-                  className="w-full"
+                  className="w-full border-y-0"
                   formik={formik}
                   value={formik.values.secondText}
                   name={"secondText"}
@@ -144,7 +144,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"comment"}
                     type="textarea"
-                    className="w-full"
+                    className="w-full border-l-0"
                     formik={formik}
                     value={formik.values.comment}
                     name={"comment"}
@@ -156,7 +156,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"fourthText"}
                   type="text"
-                  className="w-full"
+                  className="w-full border-y-0"
                   formik={formik}
                   value={formik.values.fourthText}
                   name={"fourthText"}
@@ -186,7 +186,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"fifthText"}
                   type="text"
-                  className="w-full"
+                  className="w-full mb-[100px] border-t-0"
                   formik={formik}
                   value={formik.values.fifthText}
                   name={"fifthText"}

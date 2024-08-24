@@ -49,7 +49,7 @@ const Actions = () => {
           return (
             <>
               <GlobalAvtion title={"Должность"} />
-              <div className="w-full max-w-[700px] mx-auto rounded-[7px] overflow-hidden">
+              <div className="w-full max-w-[700px] mx-auto  mb-[100px] overflow-hidden">
                 <GlobalIcons
                   placeholder={"title"}
                   type="text"

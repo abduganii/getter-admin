@@ -89,8 +89,8 @@ const Actions = () => {
           return (
             <>
               <GlobalAvtion title={"Статьи / Тема Статьи"} />
-              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-10  overflow-hidden flex ">
-                <div className="rounded-[7px] w-full max-w-[240px]">
+              <div className="w-full max-w-[947px] mx-auto gap-[31px] mb-[100px]  overflow-hidden flex ">
+                <div className=" w-full max-w-[240px]">
                   <FileUpload
                     name={"avatar"}
                     formik={formik}
@@ -100,7 +100,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"categories"}
                     type="select"
-                    className="w-full"
+                    className="w-full border-y-0"
                     formik={formik}
                     mode="multiple"
                     value={formik.values.categories}
@@ -117,7 +117,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"tags"}
                     type="select"
-                    className="w-full"
+                    className="w-full "
                     formik={formik}
                     mode="tags"
                     name={"tags"}
@@ -150,7 +150,7 @@ const Actions = () => {
                   <GlobalIcons
                     placeholder={"shortDescription"}
                     type="textarea"
-                    className="w-full"
+                    className="w-full border-t-0"
                     formik={formik}
                     value={formik.values.shortDescription}
                     name={"shortDescription"}
@@ -160,7 +160,7 @@ const Actions = () => {
                   />
                 </div>
 
-                <div className="w-full max-w-[676px]">
+                <div className="w-full max-w-[676px] mb-[100px]">
                   <RichText
                     placeholder={"Mavzu"}
                     title={true}
@@ -169,6 +169,7 @@ const Actions = () => {
                     formik={formik}
                   />
                   <RichText
+                  
                     placeholder={"Mavzu matnini batafsil yozing"}
                     name={`description`}
                     value={formik.values.description}

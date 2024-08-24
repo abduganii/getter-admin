@@ -23,7 +23,7 @@ const GlobalAvtion = ({ title }) => {
         </p>
         <button
           type="submit"
-          className="min-w-[180px]  bg-violet-700 text-center text-white text-[22px] font-semibold  py-[24px] inline-block px-[35px]"
+          className="min-w-[180px]  bg-violet-700 text-center text-white text-[22px] font-semibold  py-[20px] inline-block px-[35px]"
         >
           {id == "new" ? "Сохранить" : "Изменить"}
         </button>
