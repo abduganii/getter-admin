@@ -123,7 +123,8 @@ const Actions = () => {
                   />
                 <GlobalIcons
                   placeholder={"secondText"}
-                  type="text"
+                  type="textarea"
+                  rows={1}
                   className="w-full border-y-0"
                   formik={formik}
                   value={formik.values.secondText}

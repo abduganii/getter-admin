@@ -85,7 +85,7 @@ const Actions = () => {
         validateOnMount={false}
       >
         {(formik) => {
-          console.log(formik.values.tags)
+          console.log(formik.values.tags,"here")
           return (
             <>
               <GlobalAvtion title={"Статьи / Тема Статьи"} />
