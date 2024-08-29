@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import GlobalAvtion from "../../../ui/glabal-action";
 import GlobalIcons from "../../../ui/global-input";
+import UserInput from "../../../ui/user-input";
 import FileUpload from "../../../ui/file-upload";
 import { FormContainer } from "../../../components/Forms";
 import { useNavigate, useParams } from "react-router-dom";
@@ -73,7 +74,7 @@ const Actions = () => {
           },
           {
             name: "type",
-            value: 'portfolio',
+            value: "portfolio"
           }
         ]}
         customData={(data) => {
@@ -81,7 +82,6 @@ const Actions = () => {
           retrData.developers = developer?.items.filter((item) =>
             retrData?.developers?.includes(item.id)
           );
-
 
           return retrData;
         }}
@@ -116,11 +116,11 @@ const Actions = () => {
                   required={true}
                 />
                 <FileUploadMilty
-                    name={"media"}
-                    formik={formik}
-                    value={formik.values.media}
-                    title={"media"}
-                  />
+                  name={"media"}
+                  formik={formik}
+                  value={formik.values.media}
+                  title={"media"}
+                />
                 <GlobalIcons
                   placeholder={"secondText"}
                   type="textarea"
@@ -134,14 +134,13 @@ const Actions = () => {
                   required={true}
                 />
                 <div className="flex">
-              
-                   <FileUpload
+                  <FileUpload
                     name={"video"}
                     type="file"
                     formik={formik}
                     value={formik.values.video}
                     title={"image"}
-                />
+                  />
                   <GlobalIcons
                     placeholder={"comment"}
                     type="textarea"
@@ -157,7 +156,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"fourthText"}
                   type="text"
-                  className="w-full border-y-0"
+                  className="w-full border-t-0"
                   formik={formik}
                   value={formik.values.fourthText}
                   name={"fourthText"}
@@ -165,29 +164,27 @@ const Actions = () => {
                   errors={formik.errors.fourthText}
                   required={true}
                 />
-                <GlobalIcons
-                  placeholder={"developers"}
-                  type="select"
-                  className="w-full"
-                  formik={formik}
-                  mode="multiple"
-                  value={formik.values.developers?.map(
-                    (e) => e?.firstName || e
-                  )}
-                  name={"developers"}
-                  id={"developers"}
-                  props="firstName"
-                  errors={formik.errors.developers}
-                  localChange={(e) => {
-                    formik.setFieldValue(`developers`, e);
-                  }}
-                  required={true}
+
+                <UserInput
                   options={developer?.items || []}
+                  localChange={(e) => {
+                    formik.setFieldValue(`developers`, [
+                      ...formik.values.developers,
+                      e
+                    ]);
+                  }}
+                  removeItem={(e) => {
+                    formik.setFieldValue(
+                      `developers`,
+                      formik.values.developers?.filter((el) => el.id !== e?.id)
+                    );
+                  }}
+                  value={formik.values.developers}
                 />
                 <GlobalIcons
                   placeholder={"fifthText"}
                   type="text"
-                  className="w-full mb-[100px] border-t-0"
+                  className="w-full mb-[100px] "
                   formik={formik}
                   value={formik.values.fifthText}
                   name={"fifthText"}

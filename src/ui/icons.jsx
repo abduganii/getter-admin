@@ -141,10 +141,41 @@ export const UploadIcons = () => {
     </svg>
   );
 };
-export const LoginIcons = ({color}) => {
+export const LoginIcons = ({ color }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M14.9998 5V10C14.9998 10.663 14.7364 11.2989 14.2676 11.7678C13.7988 12.2366 13.1629 12.5 12.4998 12.5L4.1665 12.5M4.1665 12.5L7.49984 9.16667M4.1665 12.5L7.49984 15.8333" stroke={color} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <path
+        d="M14.9998 5V10C14.9998 10.663 14.7364 11.2989 14.2676 11.7678C13.7988 12.2366 13.1629 12.5 12.4998 12.5L4.1665 12.5M4.1665 12.5L7.49984 9.16667M4.1665 12.5L7.49984 15.8333"
+        stroke={color}
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+export const UserPlusIcons = ({ color }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M12 5L12 19M5 12L19 12"
+        stroke="#6900FF"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
     </svg>
   );
 };

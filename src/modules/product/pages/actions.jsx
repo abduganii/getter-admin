@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AddData, GetAllData, GetByIdData } from "../../../service/global";
 import { useQuery } from "react-query";
 import FileUploadMilty from "../../../ui/file-multi-upload";
+import UserInput from "../../../ui/user-input";
 const Actions = () => {
   const [loader, setLoader] = useState();
   const navigate = useNavigate();
@@ -165,24 +166,21 @@ const Actions = () => {
                   errors={formik.errors.fourthText}
                   required={true}
                 />
-                <GlobalIcons
-                  placeholder={"developers"}
-                  type="select"
-                  className="w-full"
-                  formik={formik}
-                  mode="multiple"
-                  value={formik.values.developers?.map(
-                    (e) => e?.firstName || e
-                  )}
-                  name={"developers"}
-                  id={"developers"}
-                  props="firstName"
-                  errors={formik.errors.developers}
-                  localChange={(e) => {
-                    formik.setFieldValue(`developers`, e);
-                  }}
-                  required={true}
+               <UserInput
                   options={developer?.items || []}
+                  localChange={(e) => {
+                    formik.setFieldValue(`developers`, [
+                      ...formik.values.developers,
+                      e
+                    ]);
+                  }}
+                  removeItem={(e) => {
+                    formik.setFieldValue(
+                      `developers`,
+                      formik.values.developers?.filter((el) => el.id !== e?.id)
+                    );
+                  }}
+                  value={formik.values.developers}
                 />
                 <GlobalIcons
                   placeholder={"fifthText"}
