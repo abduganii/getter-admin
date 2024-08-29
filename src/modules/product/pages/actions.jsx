@@ -158,7 +158,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"fourthText"}
                   type="text"
-                  className="w-full border-y-0"
+                  className="w-full border-t-0"
                   formik={formik}
                   value={formik.values.fourthText}
                   name={"fourthText"}
@@ -185,7 +185,7 @@ const Actions = () => {
                 <GlobalIcons
                   placeholder={"fifthText"}
                   type="text"
-                  className="w-full mb-[100px] border-t-0"
+                  className="w-full mb-[100px]"
                   formik={formik}
                   value={formik.values.fifthText}
                   name={"fifthText"}
